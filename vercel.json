@@ -1,0 +1,9 @@
+{
+  "framework": "static",
+  "routes": [
+    { "src": "/(.*)", "dest": "/index.html" }
+  ],
+  "buildCommand": "echo 'Static HTML deployment'",
+  "outputDirectory": ".",
+  "installCommand": "echo 'No dependencies to install'"
+}
