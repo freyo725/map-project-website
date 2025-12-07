@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAP 项目官网 - 北京大学心理与认知科学学院</title>
+    <style>
+        /* 全局样式（原有样式不变） */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+        }
+        body {
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        a {
+            text-decoration: none;
+            color: #8C1C13; /* 北大红 */
+        }
+        a:hover {
+            color: #5A0E08;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #8C1C13;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn:hover {
+            background-color: #5A0E08;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(140, 28, 19, 0.2);
+        }
+        /* 恢复全局section-title样式 */
+        .section-title {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 35px;
+            font-weight: 700;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #8C1C13;
+        }
+        /* 新增：独立页面隐藏重复标题的类 */
+        .page-section .hide-in-page {
+            display: none !important;
+        }
+        .content-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        /* 导航栏 - 优化样式 */
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 85px;
+            padding: 0 15px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 5px 0;
+        }
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #8C1C13;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.3;
+        }
+        .logo-text span {
+            color: #8C1C13;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            gap: 35px;
+        }
+        .nav-link {
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #8C1C13;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #8C1C13;
+        }
+
+        /* 首页英雄区 - 优化 */
+        .hero {
+            background: linear-gradient(135deg, #f8f8f8 0%, #faf0f0 100%);
+            padding: 90px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238c1c13' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        .hero-subtitle {
+            font-size: 18px;
+            color: #8C1C13;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        .hero-title {
+            font-size: 38px;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+        .hero-desc {
+            font-size: 17px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        /* 最新进展模块 - 改为项目进展 */
+        .project-progress {
+            padding: 70px 0;
+        }
+        .progress-list {
+            list-style: none;
+        }
+        .progress-item {
+            padding: 20px 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+        .progress-item:hover {
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .progress-date {
+            color: #888;
+            font-size: 14px;
+            width: 120px;
+            font-weight: 500;
+        }
+        .progress-title {
+            flex: 1;
+            font-size: 16px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        .progress-title:hover {
+            color: #8C1C13;
+        }
+
+        /* 项目介绍简介 */
+        .project-intro {
+            padding: 70px 0;
+            background-color: #f8f8f8;
+        }
+        .intro-desc {
+            font-size: 17px;
+            color: #555;
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* 加入我们模块 */
+        .benefits {
+            padding: 70px 0;
+        }
+        .benefits-container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .benefit-card {
+            flex: 1;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .benefit-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .benefit-desc {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+        .benefits-btn {
+            text-align: center;
+        }
+
+        /* 团队介绍简版 */
+        .team-brief {
+            padding: 70px 0;
+            background-color: #f8f8f8;
+        }
+        .team-desc {
+            font-size: 17px;
+            color: #555;
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: 1.8;
+        }
+        /* 符仲芳教授展示 - 左右布局 */
+        .leader-highlight {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border: 2px solid #8C1C13;
+            display: flex;
+            transition: transform 0.3s;
+        }
+        .leader-highlight:hover {
+            transform: translateY(-3px);
+        }
+        .leader-photo-wrapper {
+            flex: 0 0 300px;
+        }
+        .leader-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .leader-info {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .leader-name {
+            font-size: 26px;
+            color: #333;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        .leader-position {
+            font-size: 18px;
+            color: #8C1C13;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .leader-intro {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+        }
+        /* 其他成员一行展示 */
+        .other-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .member-card {
+            width: 220px;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .member-photo {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .member-info {
+            padding: 20px;
+            text-align: center;
+        }
+        .member-name {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .member-position {
+            font-size: 14px;
+            color: #8C1C13;
+            margin-bottom: 10px;
+        }
+        .member-intro {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 项目进展列表页 */
+        .progress-page {
+            padding: 70px 0;
+        }
+        .progress-page-list {
+            list-style: none;
+        }
+        .progress-page-item {
+            padding: 20px 15px;
+            border-bottom: 1px solid #eee;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: background-color 0.3s;
+        }
+        .progress-page-item:hover {
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .progress-page-date {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .progress-page-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        .progress-page-title:hover {
+            color: #8C1C13;
+        }
+
+        /* 项目进展详情页 */
+        .progress-detail {
+            padding: 70px 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .detail-title {
+            font-size: 34px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .detail-date {
+            color: #888;
+            font-size: 16px;
+            margin-bottom: 35px;
+            display: block;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .detail-content {
+            font-size: 17px;
+            color: #444;
+            line-height: 1.9;
+        }
+        .detail-content p {
+            margin-bottom: 25px;
+        }
+        .back-btn {
+            margin-top: 40px;
+            display: inline-block;
+        }
+
+        /* 项目介绍页 */
+        .project-page {
+            padding: 70px 0;
+        }
+        .project-section {
+            margin-bottom: 50px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .project-section-title {
+            font-size: 22px;
+            color: #8C1C13;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .project-section-desc {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+        }
+        .project-benefits {
+            margin-top: 70px;
+        }
+
+        /* 团队介绍页 */
+        .team-page {
+            padding: 70px 0;
+            background-color: #f8f8f8;
+        }
+        .team-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .team-name {
+            font-size: 34px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .team-intro {
+            font-size: 17px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* 联系我们模块（首页新增） */
+        .contact-brief {
+            padding: 70px 0;
+            background-color: #fff;
+        }
+        .contact-brief-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .contact-brief-info {
+            flex: 1;
+        }
+        .contact-brief-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 17px;
+            color: #555;
+        }
+        .contact-brief-icon {
+            width: 28px;
+            height: 28px;
+            margin-right: 15px;
+            color: #8C1C13;
+            background-color: #f0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-brief-btn {
+            flex: 0 0 200px;
+            text-align: center;
+        }
+
+        /* 联系我们页 */
+        .contact-page {
+            padding: 70px 0;
+        }
+        .contact-container {
+            display: flex;
+            gap: 40px;
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .contact-form {
+            flex: 7;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+        }
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            color: #333;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #8C1C13;
+            box-shadow: 0 0 0 3px rgba(140, 28, 19, 0.1);
+        }
+        .form-textarea {
+            height: 160px;
+            resize: vertical;
+        }
+        .contact-info {
+            flex: 3;
+            background-color: #fff;
+            padding: 40px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        .contact-info-title {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 17px;
+            color: #555;
+        }
+        .contact-icon {
+            width: 28px;
+            height: 28px;
+            margin-right: 15px;
+            color: #8C1C13;
+            background-color: #f0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Toast 提示样式 */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .toast.show {
+            opacity: 1;
+        }
+        .toast.error {
+            background-color: #f44336;
+        }
+
+        /* 页脚 - 移除版权信息，优化样式 */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 50px 0;
+            margin-top: 70px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .footer-logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 14px;
+            color: #ccc;
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 1200px) {
+            .container {
+                width: 100%;
+            }
+            .other-members {
+                max-width: 800px;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+            .hero-title {
+                font-size: 30px;
+            }
+            .section-title {
+                font-size: 24px;
+            }
+            .benefits-container {
+                flex-direction: column;
+            }
+            .leader-highlight {
+                flex-direction: column;
+            }
+            .leader-photo-wrapper {
+                flex: 0 0 250px;
+            }
+            .other-members {
+                flex-direction: column;
+                align-items: center;
+            }
+            .member-card {
+                width: 80%;
+            }
+            .contact-container {
+                flex-direction: column;
+            }
+            .contact-brief-container {
+                flex-direction: column;
+            }
+            .contact-brief-btn {
+                flex: 1;
+                width: 100%;
+            }
+            .logo-text {
+                font-size: 16px;
+            }
+            .logo-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+    </style>
+    <!-- 引入 EmailJS 库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="logo-text">
+                    北京大学心理与认知科学学院<br>
+                    <span>一抹阳光实验室</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <div class="nav-link active" data-target="home">首页</div>
+                <div class="nav-link" data-target="progress-list">项目进展</div>
+                <div class="nav-link" data-target="project-intro-page">项目介绍</div>
+                <div class="nav-link" data-target="team-intro-page">团队介绍</div>
+                <div class="nav-link" data-target="contact-us-page">联系我们</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页内容（保留所有模块标题） -->
+    <section id="home" class="page-section">
+        <div class="hero">
+            <div class="container">
+                <div class="hero-subtitle">北京大学心理与认知科学学院 一抹阳光实验室</div>
+                <h1 class="hero-title">中国临床心理学专业硕士职业发展追踪研究</h1>
+                <p class="hero-desc">本研究旨在系统追踪中国临床心理学专业硕士的职业发展路径，探索专业培养与行业需求的匹配度，为学科建设、人才培养和行业发展提供实证依据。</p>
+            </div>
+        </div>
+
+        <!-- 项目进展模块（首页保留标题） -->
+        <div class="project-progress">
+            <div class="container">
+                <h2 class="section-title">项目进展</h2>
+                <ul class="progress-list">
+                    <li class="progress-item">
+                        <span class="progress-date">2024-06-15</span>
+                        <div class="progress-title" data-action="showDetail">研究问卷设计完成并进入预调研阶段</div>
+                    </li>
+                    <li class="progress-item">
+                        <span class="progress-date">2024-05-20</span>
+                        <div class="progress-title" data-action="showDetail">项目团队完成全国临床心理硕士培养单位调研</div>
+                    </li>
+                    <li class="progress-item">
+                        <span class="progress-date">2024-04-10</span>
+                        <div class="progress-title" data-action="showDetail">研究方案通过北京大学伦理委员会审批</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 项目介绍简介（首页保留标题） -->
+        <div class="project-intro">
+            <div class="container">
+                <h2 class="section-title">项目介绍</h2>
+                <p class="intro-desc">随着社会对心理健康服务需求的日益增长，临床心理学专业人才培养备受关注。本项目通过长期追踪调查，聚焦临床心理学专业硕士毕业生的职业选择、发展轨迹、能力提升与职业满意度等核心问题，深入分析影响职业发展的关键因素，为优化专业培养方案、完善行业支持体系提供科学参考。</p>
+            </div>
+        </div>
+
+        <!-- 加入我们模块（首页保留标题） -->
+        <div class="benefits">
+            <div class="container">
+                <h2 class="section-title">加入我们，你将获得</h2>
+                <div class="benefits-container">
+                    <div class="benefit-card">
+                        <h3 class="benefit-title">专业发展支持</h3>
+                        <p class="benefit-desc">获得行业前沿动态分析报告，参与专业技能提升 workshops，拓展职业发展网络。</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3 class="benefit-title">个性化反馈</h3>
+                        <p class="benefit-desc">基于调研数据的个人职业发展评估报告，为职业规划提供针对性建议。</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3 class="benefit-title">学术成果共享</h3>
+                        <p class="benefit-desc">优先获取研究成果摘要，有机会参与后续学术研讨，共同推动行业发展。</p>
+                    </div>
+                </div>
+                <div class="benefits-btn">
+                    <a href="https://www.wjx.cn" target="_blank" class="btn">加入研究</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 团队介绍简版（首页保留标题） -->
+        <div class="team-brief">
+            <div class="container">
+                <h2 class="section-title">项目团队</h2>
+                <p class="team-desc">项目团队由北京大学心理与认知科学学院资深教授领衔，汇聚了临床心理学、发展心理学、教育评估等多个领域的专业人才，具备丰富的科研经验和行业实践背景。</p>
+                <!-- 符仲芳教授 - 左右布局 -->
+                <div class="leader-highlight">
+                    <div class="leader-photo-wrapper">
+                        <img src="https://picsum.photos/seed/leader1/300/400" alt="符仲芳教授" class="leader-photo">
+                    </div>
+                    <div class="leader-info">
+                        <h3 class="leader-name">符仲芳</h3>
+                        <p class="leader-position">PhD of Clinical Psychology | 项目负责人</p>
+                        <p class="leader-intro">北京大学心理与认知科学学院教授，美国加州大学洛杉矶分校临床心理学博士，长期致力于临床心理学人才培养、职业心理健康与发展、心理治疗与咨询效果评估等领域研究，主持多项国家级科研项目，在国内外核心期刊发表学术论文50余篇。作为一抹阳光实验室的核心负责人，符教授带领团队深耕临床心理学应用研究，推动产学研结合，为心理健康服务行业培养了大批专业人才。</p>
+                    </div>
+                </div>
+                <!-- 其他成员一行展示 -->
+                <div class="other-members">
+                    <div class="member-card">
+                        <img src="https://picsum.photos/seed/member2/300/200" alt="团队成员" class="member-photo">
+                        <div class="member-info">
+                            <h3 class="member-name">李明</h3>
+                            <p class="member-position">研究员</p>
+                            <p class="member-intro">主要负责调研设计与数据收集，具有丰富的定量研究经验，专注于职业发展评估领域。</p>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="https://picsum.photos/seed/member3/300/200" alt="团队成员" class="member-photo">
+                        <div class="member-info">
+                            <h3 class="member-name">张华</h3>
+                            <p class="member-position">研究助理</p>
+                            <p class="member-intro">负责数据整理与分析，临床心理学硕士，具备扎实的专业知识和数据分析技能。</p>
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <img src="https://picsum.photos/seed/member4/300/200" alt="团队成员" class="member-photo">
+                        <div class="member-info">
+                            <h3 class="member-name">王静</h3>
+                            <p class="member-position">研究助理</p>
+                            <p class="member-intro">负责访谈与质性分析，发展心理学硕士，擅长定性研究方法与资料分析。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 首页联系我们模块（首页保留标题） -->
+        <div class="contact-brief">
+            <div class="container">
+                <h2 class="section-title">联系我们</h2>
+                <div class="contact-brief-container">
+                    <div class="contact-brief-info">
+                        <div class="contact-brief-item">
+                            <i class="fas fa-phone contact-brief-icon"></i>
+                            <span>010-11111111</span>
+                        </div>
+                        <div class="contact-brief-item">
+                            <i class="fas fa-envelope contact-brief-icon"></i>
+                            <span>123@pku.com</span>
+                        </div>
+                        <div class="contact-brief-item">
+                            <i class="fas fa-map-marker-alt contact-brief-icon"></i>
+                            <span>北京大学王克桢楼</span>
+                        </div>
+                    </div>
+                    <div class="contact-brief-btn">
+                        <div class="btn" data-target="contact-us-page" id="contact-btn">详细联系</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目进展列表页（隐藏重复标题：添加hide-in-page类） -->
+    <section id="progress-list" class="page-section" style="display: none;">
+        <div class="container">
+            <!-- 关键修改：添加hide-in-page类，在独立页面隐藏该标题 -->
+            <h2 class="section-title hide-in-page">项目进展</h2>
+            <ul class="progress-page-list">
+                <li class="progress-page-item">
+                    <span class="progress-page-date">2024-06-15</span>
+                    <div class="progress-page-title" data-action="showDetail">研究问卷设计完成并进入预调研阶段</div>
+                </li>
+                <li class="progress-page-item">
+                    <span class="progress-page-date">2024-05-20</span>
+                    <div class="progress-page-title" data-action="showDetail">项目团队完成全国临床心理硕士培养单位调研</div>
+                </li>
+                <li class="progress-page-item">
+                    <span class="progress-page-date">2024-04-10</span>
+                    <div class="progress-page-title" data-action="showDetail">研究方案通过北京大学伦理委员会审批</div>
+                </li>
+                <li class="progress-page-item">
+                    <span class="progress-page-date">2024-03-05</span>
+                    <div class="progress-page-title" data-action="showDetail">项目启动会顺利召开，确定研究框架与时间节点</div>
+                </li>
+                <li class="progress-page-item">
+                    <span class="progress-page-date">2024-01-18</span>
+                    <div class="progress-page-title" data-action="showDetail">项目获得北京大学科研基金支持</div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 项目进展详情页（无重复标题，无需修改） -->
+    <section id="progress-detail" class="page-section" style="display: none;">
+        <div class="container">
+            <h1 class="detail-title">研究问卷设计完成并进入预调研阶段</h1>
+            <span class="detail-date">2024-06-15</span>
+            <div class="detail-content">
+                <p>经过项目团队近两个月的反复研讨与修订，本研究的核心调研问卷已正式设计完成。问卷涵盖职业选择动机、专业技能应用、职业满意度、行业发展期望等多个核心维度，共计3个模块、56个题项。</p>
+                <p>问卷设计过程中，团队邀请了5位临床心理学领域的资深专家进行评审，根据专家意见对题项表述、逻辑结构进行了优化调整，确保问卷的科学性与实用性。同时，通过小范围预测试（n=30）对问卷的信效度进行了初步检验，结果显示各维度信度系数均在0.8以上，符合研究要求。</p>
+                <p>目前，问卷已正式进入预调研阶段，预调研对象为2023届临床心理学专业硕士毕业生，计划收集样本量500份。预调研结束后，团队将根据数据结果进一步优化问卷，预计2024年7月正式启动全国范围的大规模调研。</p>
+                <p>感谢各位专家与预调研参与者的支持与配合，项目团队将持续推进研究进程，及时发布相关进展。</p>
+            </div>
+            <div class="back-btn btn" data-action="backToList">返回项目进展列表</div>
+        </div>
+    </section>
+
+    <!-- 项目介绍页（隐藏重复标题：添加hide-in-page类） -->
+    <section id="project-intro-page" class="page-section" style="display: none;">
+        <div class="container">
+            <!-- 关键修改：添加hide-in-page类，在独立页面隐藏该标题 -->
+            <h2 class="section-title hide-in-page">项目介绍</h2>
+            <div class="project-section">
+                <h3 class="project-section-title">项目概述</h3>
+                <p class="project-section-desc">随着我国心理健康服务体系的不断完善，临床心理学专业人才需求持续增长。临床心理学专业硕士作为行业核心储备力量，其职业发展状况直接关系到心理健康服务的质量与可持续性。本研究聚焦中国临床心理学专业硕士的职业发展轨迹，通过为期3年的追踪调查，系统收集毕业生在职业选择、工作适应、能力提升、职业满意度等方面的数据，深入分析个人特质、培养模式、行业环境等因素对职业发展的影响机制，最终形成兼具学术价值与实践意义的研究成果，为高校人才培养改革、行业规范建设、政策制定提供科学依据。</p>
+            </div>
+            <div class="project-section">
+                <h3 class="project-section-title">研究方法</h3>
+                <p class="project-section-desc">本研究采用混合研究方法，结合定量追踪与定性访谈，确保研究结果的全面性与深度。定量层面，将通过问卷调查的方式，对2024-2026届临床心理学专业硕士毕业生进行每年一次的追踪调查，收集职业发展相关数据；定性层面，将选取不同职业发展路径的毕业生进行深度访谈，挖掘其职业决策过程与发展体验。研究样本将覆盖全国不同地区、不同类型培养单位的毕业生，计划最终追踪样本量1500人。数据收集完成后，将采用SPSS、AMOS等统计软件进行描述性统计、相关分析、回归分析等，深入探讨各变量间的关系。</p>
+            </div>
+            <div class="project-section">
+                <h3 class="project-section-title">信息保密</h3>
+                <p class="project-section-desc">本研究严格遵守学术研究伦理规范，对所有参与者的个人信息与调研数据进行严格保密。所有收集的数据仅用于学术研究目的，个人身份信息将进行匿名化处理，调研原始数据将由专人保管，存储在加密服务器中。研究成果发表时，仅呈现聚合性的统计结果，不会泄露任何个人隐私信息。参与者可随时要求退出研究，退出后相关数据将被删除，且不会对参与者造成任何不利影响。本研究已通过北京大学伦理委员会审批（审批号：PKU-IRB-2024-032），全程接受伦理委员会的监督。</p>
+            </div>
+            <div class="project-benefits benefits">
+                <!-- 加入我们模块标题在独立页面也隐藏 -->
+                <h2 class="section-title hide-in-page">加入我们，你将获得</h2>
+                <div class="benefits-container">
+                    <div class="benefit-card">
+                        <h3 class="benefit-title">专业发展支持</h3>
+                        <p class="benefit-desc">获得行业前沿动态分析报告，参与专业技能提升 workshops，拓展职业发展网络。</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3 class="benefit-title">个性化反馈</h3>
+                        <p class="benefit-desc">基于调研数据的个人职业发展评估报告，为职业规划提供针对性建议。</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h3 class="benefit-title">学术成果共享</h3>
+                        <p class="benefit-desc">优先获取研究成果摘要，有机会参与后续学术研讨，共同推动行业发展。</p>
+                    </div>
+                </div>
+                <div class="benefits-btn">
+                    <a href="https://www.wjx.cn" target="_blank" class="btn">加入研究</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 团队介绍页（隐藏重复标题：添加hide-in-page类） -->
+    <section id="team-intro-page" class="page-section" style="display: none;">
+        <div class="container">
+            <div class="team-header">
+                <!-- 关键修改：添加hide-in-page类，在独立页面隐藏该标题 -->
+                <h2 class="section-title hide-in-page">团队介绍</h2>
+                <h3 class="team-name">MAP 研究项目团队</h3>
+                <p class="team-intro">团队依托北京大学心理与认知科学学院的学科优势，汇聚了临床心理学、发展心理学、教育评估、数据分析等多个领域的专业人才。团队成员兼具扎实的学术功底与丰富的实践经验，致力于通过高质量的科研工作，为中国临床心理学专业人才培养与行业发展贡献力量。</p>
+            </div>
+            <!-- 符仲芳教授 - 左右布局 -->
+            <div class="leader-highlight">
+                <div class="leader-photo-wrapper">
+                    <img src="https://picsum.photos/seed/leader1/300/400" alt="符仲芳教授" class="leader-photo">
+                </div>
+                <div class="leader-info">
+                    <h3 class="leader-name">符仲芳 / Zhongfang Fu</h3>
+                    <p class="leader-position">PhD of Clinical Psychology，项目负责人</p>
+                    <p class="leader-intro">北京大学心理与认知科学学院教授，美国加州大学洛杉矶分校临床心理学博士，长期致力于临床心理学人才培养、职业心理健康与发展、心理治疗与咨询效果评估等领域研究，主持多项国家级科研项目，在国内外核心期刊发表学术论文50余篇。作为一抹阳光实验室的核心负责人，符教授带领团队深耕临床心理学应用研究，推动产学研结合，为心理健康服务行业培养了大批专业人才。</p>
+                </div>
+            </div>
+            <!-- 其他成员一行展示 -->
+            <div class="other-members">
+                <div class="member-card">
+                    <img src="https://picsum.photos/seed/member2/300/200" alt="团队成员" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">李明</h3>
+                        <p class="member-position">研究员</p>
+                        <p class="member-intro">负责调研设计与数据收集，美国宾夕法尼亚大学教育评估博士，具有10年以上定量研究经验，专注于职业发展评估、教育统计与测量领域。</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <img src="https://picsum.photos/seed/member3/300/200" alt="团队成员" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">张华</h3>
+                        <p class="member-position">研究助理</p>
+                        <p class="member-intro">负责数据整理与分析，北京大学临床心理学硕士，具备扎实的临床心理学专业知识和SPSS、Mplus等数据分析软件操作技能。</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <img src="https://picsum.photos/seed/member4/300/200" alt="团队成员" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">王静</h3>
+                        <p class="member-position">研究助理</p>
+                        <p class="member-intro">负责访谈与质性分析，北京师范大学发展心理学硕士，擅长定性研究方法，具有丰富的访谈设计与资料分析经验。</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <img src="https://picsum.photos/seed/member5/300/200" alt="团队成员" class="member-photo">
+                    <div class="member-info">
+                        <h3 class="member-name">陈浩</h3>
+                        <p class="member-position">技术支持</p>
+                        <p class="member-intro">负责问卷开发与数据管理，北京大学计算机科学与技术学士，具备丰富的网页开发与数据库管理经验。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们页（隐藏重复标题：添加hide-in-page类） -->
+    <section id="contact-us-page" class="page-section" style="display: none;">
+        <div class="container">
+            <!-- 关键修改：添加hide-in-page类，在独立页面隐藏该标题 -->
+            <h2 class="section-title hide-in-page">联系我们</h2>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="form-label">姓名</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">邮箱</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">手机号</label>
+                            <input type="tel" id="phone" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="organization" class="form-label">单位/机构</label>
+                            <input type="text" id="organization" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">诉求</label>
+                            <textarea id="message" class="form-textarea" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">发送诉求</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3 class="contact-info-title">联系方式</h3>
+                    <div class="contact-info-item">
+                        <i class="fas fa-phone contact-icon"></i>
+                        <span>010-11111111</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <span>123@pku.com</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <span>北京大学王克桢楼</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast 提示容器 -->
+    <div class="toast" id="toast"></div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">北京大学心理与认知科学学院 一抹阳光实验室</div>
+            <div class="footer-text">北京大学心理与认知科学学院 一抹阳光实验室</div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // 初始化 EmailJS（替换为你的 Public Key）
+            emailjs.init('你的EmailJS公钥');
+
+            window.addEventListener('DOMContentLoaded', init);
+
+            function init() {
+                bindNavEvents();
+                bindActionEvents();
+                bindFormSubmit();
+                bindContactBtn();
+            }
+
+            // 导航栏事件绑定
+            function bindNavEvents() {
+                const navLinks = document.querySelectorAll('.nav-link');
+                const pageSections = document.querySelectorAll('.page-section');
+
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        // 隐藏所有页面
+                        pageSections.forEach(section => {
+                            section.style.display = 'none';
+                        });
+
+                        // 移除所有导航的active类
+                        navLinks.forEach(item => {
+                            item.classList.remove('active');
+                        });
+
+                        // 显示目标页面
+                        const targetId = this.getAttribute('data-target');
+                        const targetSection = document.getElementById(targetId);
+                        if (targetSection) {
+                            targetSection.style.display = 'block';
+                        }
+
+                        // 标记当前激活的导航
+                        this.classList.add('active');
+
+                        // 滚动到顶部
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                });
+            }
+
+            // 操作按钮事件绑定（详情/返回）
+            function bindActionEvents() {
+                const pageSections = document.querySelectorAll('.page-section');
+                const navLinks = document.querySelectorAll('.nav-link');
+
+                // 显示详情页
+                document.querySelectorAll('[data-action="showDetail"]').forEach(el => {
+                    el.addEventListener('click', function() {
+                        pageSections.forEach(section => {
+                            section.style.display = 'none';
+                        });
+                        document.getElementById('progress-detail').style.display = 'block';
+                        
+                        // 高亮项目进展导航
+                        navLinks.forEach(item => {
+                            item.classList.remove('active');
+                            if (item.getAttribute('data-target') === 'progress-list') {
+                                item.classList.add('active');
+                            }
+                        });
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                });
+
+                // 返回列表页
+                document.querySelectorAll('[data-action="backToList"]').forEach(el => {
+                    el.addEventListener('click', function() {
+                        pageSections.forEach(section => {
+                            section.style.display = 'none';
+                        });
+                        document.getElementById('progress-list').style.display = 'block';
+                        
+                        // 高亮项目进展导航
+                        navLinks.forEach(item => {
+                            item.classList.remove('active');
+                            if (item.getAttribute('data-target') === 'progress-list') {
+                                item.classList.add('active');
+                            }
+                        });
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                });
+            }
+
+            // 联系我们按钮绑定
+            function bindContactBtn() {
+                const contactBtn = document.getElementById('contact-btn');
+                if (contactBtn) {
+                    contactBtn.addEventListener('click', function() {
+                        const navLinks = document.querySelectorAll('.nav-link');
+                        const pageSections = document.querySelectorAll('.page-section');
+                        
+                        // 隐藏所有页面
+                        pageSections.forEach(section => {
+                            section.style.display = 'none';
+                        });
+                        
+                        // 移除所有导航的active类
+                        navLinks.forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        
+                        // 显示联系我们页面
+                        document.getElementById('contact-us-page').style.display = 'block';
+                        
+                        // 高亮联系我们导航
+                        navLinks.forEach(item => {
+                            if (item.getAttribute('data-target') === 'contact-us-page') {
+                                item.classList.add('active');
+                            }
+                        });
+                        
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                }
+            }
+
+            // 表单提交逻辑（含EmailJS发送邮件）
+            function bindFormSubmit() {
+                const form = document.getElementById('contactForm');
+                const toast = document.getElementById('toast');
+                
+                if (form) {
+                    form.addEventListener('submit', async function(e) {
+                        e.preventDefault();
+                        
+                        // 1. 前端校验
+                        const name = document.getElementById('name').value.trim();
+                        const email = document.getElementById('email').value.trim();
+                        const phone = document.getElementById('phone').value.trim();
+                        const organization = document.getElementById('organization').value.trim();
+                        const message = document.getElementById('message').value.trim();
+
+                        // 邮箱格式校验
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(email)) {
+                            showToast('请输入有效的邮箱地址', 'error');
+                            return;
+                        }
+
+                        // 手机号格式校验
+                        const phoneRegex = /^1[3-9]\d{9}$/;
+                        if (!phoneRegex.test(phone)) {
+                            showToast('请输入有效的手机号', 'error');
+                            return;
+                        }
+
+                        // 空值校验
+                        if (!name || !organization || !message) {
+                            showToast('请填写完整信息', 'error');
+                            return;
+                        }
+
+                        try {
+                            // 2. 调用 EmailJS 发送邮件
+                            const result = await emailjs.send(
+                                '你的Service ID', // 替换为你的 EmailJS Service ID
+                                '你的Template ID', // 替换为你的 EmailJS Template ID
+                                {
+                                    name: name,
+                                    email: email,
+                                    phone: phone,
+                                    organization: organization,
+                                    message: message,
+                                    to_email: '942572012@qq.com'
+                                }
+                            );
+
+                            // 3. 发送成功提示
+                            showToast('发送成功！我们将尽快与你联系', 'success');
+                            form.reset(); // 重置表单
+                        } catch (error) {
+                            console.error('发送失败：', error);
+                            showToast('发送失败，请稍后重试', 'error');
+                        }
+                    });
+                }
+            }
+
+            // Toast 提示函数
+            function showToast(text, type = 'success') {
+                const toast = document.getElementById('toast');
+                toast.textContent = text;
+                toast.className = 'toast'; // 重置样式
+                toast.classList.add(type, 'show');
+                
+                // 3秒后隐藏
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+        })();
+    </script>
+</body>
+</html>
